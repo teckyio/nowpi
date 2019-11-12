@@ -1,0 +1,1 @@
+@lxterminal -e python3 /home/pi/init.py
