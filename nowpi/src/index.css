@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url(./fonts/NotoSansTC-Light.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src: url(./fonts/NotoSansTC-Medium.otf) format('opentype');
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-size: 2vw;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: 'Noto Sans TC';
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
