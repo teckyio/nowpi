@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.css';
+import { Switch, Route } from 'react-router';
+import NetworkChecker from './components/NetworkChecker';
+import UpdateChecker from './components/UpdateChecker';
+import UpdateRunner from './components/UpdateRunner';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <div className="loading">
-        <p><i className="fas fa-spinner fa-spin"></i></p>
-        <p>載入中</p>
-      </div>
+      <Switch>
+        <Route path="/" exact><NetworkChecker /></Route>
+        <Route path="/UpdateCheck" exact><UpdateChecker /></Route>
+        <Route path="/UpdateRunner" exact><UpdateRunner /></Route>
+      </Switch>
     </div>
   );
 }

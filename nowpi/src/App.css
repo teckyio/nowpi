@@ -1,4 +1,4 @@
-
+.content,
 .loading {
   width: 100vw;
   height: 100vh;
@@ -6,4 +6,53 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  padding: 3vw;
+}
+
+.button {
+  background: #ffffff;
+  color: #000000;
+  padding: 1vw 2vw;
+  display: flex;
+  align-items: center;
+}
+
+.button .function-button {
+  display: inline-block;
+  width: 4vw;
+  height: 1vw;
+  margin-right: 0.5vw;
+}
+.button .function-button.red {
+  background: #f00;
+}
+
+h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.wifi-list {
+  flex: 1;
+  margin: 3vw;
+  border: solid 2px #ffffff;
+  width: 94vw;
+  overflow-y: scroll;
+}
+
+.wifi-list div {
+  padding: 2vw 4vw;
+  display: flex;
+  align-items: center;
+}
+.wifi-list div:hover,
+.wifi-list div.selected {
+  background: #007B84;
+}
+.wifi-list div p {
+  margin: 0;
+}
+.wifi-list div p:first-child {
+  flex: 1;
 }

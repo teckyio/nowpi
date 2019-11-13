@@ -1,0 +1,8 @@
+{
+  "name": "nowpi-electron",
+  "version": "0.1.0",
+  "main": "main.js",
+  "dependencies": {
+    "hdmi-cec": "^0.2.8"
+  }
+}
