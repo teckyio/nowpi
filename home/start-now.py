@@ -49,7 +49,7 @@ def stream_channel(stop_event):
         url = urls["asset"]["hls"]["adaptive"][0]
 
         p = subprocess.Popen(["ffmpeg", "-re", "-i", url, "-fflags", "+genpts+igndts", "-c", "copy", "-f", "mpegts", "udp://localhost:1234"])
-        while not stop_event.wait(1):
+        while not stop_event.wait(1) and p.poll() is None:
             pass
         p.terminate()
         stop_event.clear()
@@ -65,8 +65,12 @@ def cec_key_press(event, cmd, value, *args):
             order = order + 1
         t_channel_stopper.set()
         player.quit()
-        time.sleep(1)
-        player = OMXPlayer("udp://localhost:1234")
+
+def restart_player(*args):
+    global player
+
+    player = OMXPlayer("udp://localhost:1234")
+    player.exitEvent = restart_player
 
 cec.init()
 cec.add_callback(cec_key_press, cec.EVENT_KEYPRESS)
@@ -76,3 +80,4 @@ t_channel = threading.Thread(target=stream_channel, args=(t_channel_stopper, ))
 t_channel.start()
 
 player = OMXPlayer("udp://localhost:1234")
+player.exitEvent = restart_player
