@@ -2,6 +2,7 @@
   "name": "nowpi",
   "version": "0.1.0",
   "private": true,
+  "description": "A custom-made TV box software to stream NowTV on Raspberry Pi",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@types/jest": "24.0.23",
@@ -12,7 +13,7 @@
     "@types/react-router-dom": "^5.1.2",
     "concurrently": "^5.0.0",
     "connected-react-router": "^6.5.2",
-    "electron": "^7.1.1",
+    "electron-updater": "^4.2.0",
     "hdmi-cec": "^0.2.8",
     "history": "^4.10.1",
     "react": "^16.11.0",
@@ -23,13 +24,45 @@
     "react-scripts": "3.2.0",
     "redux": "^4.0.4",
     "ts-node": "^8.5.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "wait-on": "^3.3.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.1.0"
+  },
+  "build": {
+    "directories": {
+      "app": "electron"
+    },
+    "asar": false,
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "teckyio",
+        "repo": "nowpi"
+      }
+    ],
+    "files": [
+      {
+        "from": ".",
+        "to": ".",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "../build",
+        "to": "build"
+      }
+    ],
+    "appId": "io.tecky.nowpi",
+    "productName": "NowPi",
+    "copyright": "Copyright © 2019 Tecky Academy Limited",
+    "extends": null
   },
   "license": "GPL-3.0-or-later",
   "author": "Alex Lau <alex@tecky.io>",
   "scripts": {
-    "start": "concurrently 'react-scripts start' 'electron electron/main.js --dev'",
-    "build": "react-scripts build",
+    "start": "concurrently 'BROWSER=none react-scripts start' 'wait-on http://localhost:3000 && electron electron/main.js --dev'",
+    "build": "react-scripts build && electron-builder build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
