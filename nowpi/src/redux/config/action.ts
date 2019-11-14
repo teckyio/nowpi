@@ -27,10 +27,16 @@ import { Wifi } from "./reducer";
 
 export const UPDATE_NETWORK_ACTION = "@@config/UPDATE_NETWORK_ACTION";
 export const SELECT_NETWORK_ACTION = "@@config/SELECT_NETWORK_ACTION";
+export const SET_NETWORK_PASSWORD_ACTION = "@@config/SET_NETWORK_PASSWORD_ACTION";
 
 export interface SelectNetworkAction {
   type: typeof SELECT_NETWORK_ACTION;
   name: string;
+}
+
+export interface SetNetworkPasswordAction {
+  type: typeof SET_NETWORK_PASSWORD_ACTION;
+  password: string | null;
 }
 
 export interface UpdateNetworkAction {
@@ -38,12 +44,18 @@ export interface UpdateNetworkAction {
   wifis: Wifi[];
 }
 
-export type ConfigActions = UpdateNetworkAction | SelectNetworkAction;
+export type ConfigActions = UpdateNetworkAction | SelectNetworkAction | SetNetworkPasswordAction;
 
 export function selectNetwork(name: string): SelectNetworkAction {
   return {
     type: SELECT_NETWORK_ACTION,
     name
+  }
+}
+export function setNetworkPassword(password: string | null): SetNetworkPasswordAction {
+  return {
+    type: SET_NETWORK_PASSWORD_ACTION,
+    password
   }
 }
 export function updateNetwork(wifis: Wifi[]): UpdateNetworkAction {

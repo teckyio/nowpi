@@ -35,6 +35,10 @@ Alex Lau
   padding: 3vw;
 }
 
+.hide-mouse {
+  cursor: none;
+}
+
 .button {
   background: #ffffff;
   color: #000000;

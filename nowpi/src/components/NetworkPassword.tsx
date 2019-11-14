@@ -27,9 +27,10 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { replace } from 'connected-react-router';
 import { RootState } from '../redux/store';
-import { remote, CEC_KEY_RED } from '../cec';
+import { remote, CEC_KEY_RED, CEC_KEY_GREEN } from '../cec';
 import { KeyEvent } from 'hdmi-cec';
 import TVKeyboard from './TVKeyboard';
+import { setNetworkPassword } from '../redux/config/action';
 
 const NetworkPassword: React.FC = () => {
   const dispatch = useDispatch();
@@ -38,8 +39,11 @@ const NetworkPassword: React.FC = () => {
 
   useEffect(() => {
     function onRemoteKeydown(event: KeyEvent) {
-      if (event.keyCode == CEC_KEY_RED) {
+      if (event.key === CEC_KEY_RED) {
         dispatch(replace('/'));
+      } else if (event.key === CEC_KEY_GREEN) {
+        dispatch(setNetworkPassword(input.current != null ? input.current.value : null))
+        dispatch(replace('/NetworkSetup'));
       } else {
         return;
       }

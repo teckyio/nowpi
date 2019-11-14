@@ -25,7 +25,7 @@ Alex Lau
 */
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { replace, push } from 'connected-react-router';
+import { replace } from 'connected-react-router';
 import { RootState } from '../redux/store';
 import { Wifi } from '../redux/config/reducer';
 import { updateNetwork, selectNetwork } from '../redux/config/action';
@@ -45,11 +45,11 @@ const NetworkChecker: React.FC = () => {
   useEffect(() => {
     function onRemoteKeydown(event: KeyEvent) {
       let current = wifis.findIndex(wifi => wifi.name === selectedWifi)
-      if (event.keyCode == CEC_KEY_UP) {
+      if (event.key == CEC_KEY_UP) {
         current -= 1;
-      } else if (event.keyCode == CEC_KEY_DOWN) {
+      } else if (event.key == CEC_KEY_DOWN) {
         current += 1;
-      } else if ((event.keyCode == CEC_KEY_GREEN || event.keyCode == CEC_KEY_OK) && selectedWifi != null) {
+      } else if ((event.key == CEC_KEY_GREEN || event.key == CEC_KEY_OK) && selectedWifi != null) {
         dispatch(selectNetwork(selectedWifi));
         dispatch(replace('/NetworkPassword'));
         return;
@@ -77,7 +77,7 @@ const NetworkChecker: React.FC = () => {
       dispatch(replace('/UpdateCheck'));
     }
 
-    if (!navigator.onLine) {
+    if (navigator.onLine) {
       onOnline();
 
       return;
@@ -132,7 +132,7 @@ const NetworkChecker: React.FC = () => {
         window.removeEventListener('online', onOnline);
       }
     }
-  }, [navigator, setShowWifi, dispatch])
+  }, [setShowWifi, dispatch])
 
   return (
     <div>
@@ -147,7 +147,7 @@ const NetworkChecker: React.FC = () => {
           <div className="wifi-list" ref={wifiList}>
             {
               wifis.map(wifi => (
-                <div className={selectedWifi == wifi.name ? 'selected' : ''}>
+                <div key={ wifi.name } className={selectedWifi == wifi.name ? 'selected' : ''}>
                   <p>{ wifi.name }</p>
                   { wifi.keyRequired ? <i className="fas fa-lock"></i> : null}
                 </div>

@@ -24,23 +24,29 @@ Alex Lau
 
 */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+const { spawn } = window.require ? window.require('child_process') : { spawn : () => {} };
 
-const UpdateRunner: React.FC = () => {
-  const dispatch = useDispatch();
-
+const LaunchTV: React.FC = () => {
   useEffect(() => {
+    const proc = spawn('python3', ['/home/pi/start-now.py'])
     
-  }, [dispatch])
+    proc.stdout.on('data', console.log)
+    proc.stderr.on('data', console.log)
+    proc.on('exit', () => console.log('process closed'));
+
+    return () => {
+      proc.kill();
+    };
+  }, [])
 
   return (
     <div>
-      <div className="loading">
-        <p><i className="fas fa-spinner fa-spin"></i></p>
-        <p>正在更新</p>
+      <div className="loading hide-mouse">
+        <p><i className="fas fa-asterisk fa-spin"></i></p>
+        <p>轉台中</p>
       </div>
     </div>
   );
 }
 
-export default UpdateRunner;
+export default LaunchTV;

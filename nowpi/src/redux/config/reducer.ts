@@ -23,7 +23,7 @@ Alex Lau
 ===========================================================================
 
 */
-import { ConfigActions, UPDATE_NETWORK_ACTION, SELECT_NETWORK_ACTION } from "./action";
+import { ConfigActions, UPDATE_NETWORK_ACTION, SELECT_NETWORK_ACTION, SET_NETWORK_PASSWORD_ACTION } from "./action";
 
 export interface Wifi {
   name: string;
@@ -34,11 +34,13 @@ export interface Wifi {
 export interface ConfigState {
   wifis: Wifi[];
   selectedWifi: string | null;
+  password: string | null;
 }
 
 const initialState: ConfigState = {
   wifis: [],
   selectedWifi: null,
+  password: null,
 };
 
 export const configReducer = (state: ConfigState = initialState, action: ConfigActions): ConfigState => {
@@ -51,7 +53,13 @@ export const configReducer = (state: ConfigState = initialState, action: ConfigA
     case SELECT_NETWORK_ACTION:
       return {
         ...state,
-        selectedWifi: action.name
+        selectedWifi: action.name,
+        password: null
+      }
+    case SET_NETWORK_PASSWORD_ACTION:
+      return {
+        ...state,
+        password: action.password
       }
   }
   return state;

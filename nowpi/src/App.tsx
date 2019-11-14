@@ -30,6 +30,8 @@ import NetworkChecker from './components/NetworkChecker';
 import UpdateChecker from './components/UpdateChecker';
 import UpdateRunner from './components/UpdateRunner';
 import NetworkPassword from './components/NetworkPassword';
+import NetworkSetup from './components/NetworkSetup';
+import LaunchTV from './components/LaunchTV';
 
 const App: React.FC = () => {
   return (
@@ -37,8 +39,10 @@ const App: React.FC = () => {
       <Switch>
         <Route path="/" exact><NetworkChecker /></Route>
         <Route path="/NetworkPassword" exact><NetworkPassword /></Route>
+        <Route path="/NetworkSetup" exact><NetworkSetup /></Route>
         <Route path="/UpdateCheck" exact><UpdateChecker /></Route>
         <Route path="/UpdateRunner" exact><UpdateRunner /></Route>
+        <Route path="/LaunchTV" exact><LaunchTV /></Route>
       </Switch>
     </div>
   );

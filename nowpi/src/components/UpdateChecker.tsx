@@ -25,12 +25,14 @@ Alex Lau
 */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { replace } from 'connected-react-router';
 
 const UpdateChecker: React.FC = () => {
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('')
-  }, [])
+    dispatch(replace('/LaunchTV'))
+  }, [dispatch])
 
   return (
     <div>

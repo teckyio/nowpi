@@ -26,7 +26,6 @@ Alex Lau
 import React, { useState, useCallback, useEffect } from 'react';
 import { KeyEvent } from 'hdmi-cec';
 import { remote, CEC_KEY_OK, CEC_KEY_UP, CEC_KEY_DOWN, CEC_KEY_LEFT, CEC_KEY_RIGHT } from '../cec';
-import { replace } from 'connected-react-router';
 
 export const SHIFT_KEY = Symbol('Shift Key');
 export const BACKSPACE_KEY = Symbol('Backspace Key');
@@ -82,7 +81,7 @@ const TVKeyboard: React.FC<TVKeyboardProps> = props => {
 
   useEffect(() => {
     function onRemoteKeydown(event: KeyEvent) {
-      if (event.keyCode == CEC_KEY_UP) {
+      if (event.key == CEC_KEY_UP) {
         setPosition(position => {
           if (position >= currentLayout[0].length) {
             return position - currentLayout[0].length
@@ -90,7 +89,7 @@ const TVKeyboard: React.FC<TVKeyboardProps> = props => {
             return position;
           }
         })
-      } else if (event.keyCode == CEC_KEY_DOWN) {
+      } else if (event.key == CEC_KEY_DOWN) {
         setPosition(position => {
           console.log(position);
           console.log(currentLayout[0].length * (currentLayout.length - 1));
@@ -100,7 +99,7 @@ const TVKeyboard: React.FC<TVKeyboardProps> = props => {
             return position;
           }
         })
-      } else if (event.keyCode == CEC_KEY_LEFT) {
+      } else if (event.key == CEC_KEY_LEFT) {
         setPosition(position => {
           if (position % currentLayout[0].length == 0) {
             return position + currentLayout[0].length - 1;
@@ -108,7 +107,7 @@ const TVKeyboard: React.FC<TVKeyboardProps> = props => {
             return position - 1;
           }
         })
-      } else if (event.keyCode == CEC_KEY_RIGHT) {
+      } else if (event.key == CEC_KEY_RIGHT) {
         setPosition(position => {
           if (position % currentLayout[0].length == currentLayout[0].length - 1) {
             return position - currentLayout[0].length + 1;
@@ -116,7 +115,7 @@ const TVKeyboard: React.FC<TVKeyboardProps> = props => {
             return position + 1;
           }
         })
-      } else if (event.keyCode == CEC_KEY_OK) {
+      } else if (event.key == CEC_KEY_OK) {
         setPosition(position => {
           inputKey(currentLayout[Math.floor(position / currentLayout[0].length)][position % currentLayout[0].length].toString())
           return position;
