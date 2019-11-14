@@ -3805,6 +3805,10 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
 
+eventemitter3@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
+
 eventemitter3@^3.0.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
@@ -4543,6 +4547,13 @@ hash.js@^1.0.0, hash.js@^1.0.3:
   dependencies:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
+
+hdmi-cec@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/hdmi-cec/-/hdmi-cec-0.2.8.tgz#31391174c57821eb6ca32a08313617ca67ce2577"
+  dependencies:
+    debug "^2.6.8"
+    eventemitter3 "^2.0.3"
 
 he@1.2.x:
   version "1.2.0"

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 import { RootState } from '../redux/store';
 import { Wifi } from '../redux/config/reducer';
-import { updateNetwork } from '../redux/config/action';
-import { remote } from '../cec';
+import { updateNetwork, selectNetwork } from '../redux/config/action';
+import { remote, CEC_KEY_DOWN, CEC_KEY_UP, CEC_KEY_OK, CEC_KEY_GREEN } from '../cec';
 import { KeyEvent } from 'hdmi-cec';
 
 const { spawn } = window.require ? window.require('child_process') : { spawn : () => {} };
@@ -20,10 +20,16 @@ const NetworkChecker: React.FC = () => {
   useEffect(() => {
     function onRemoteKeydown(event: KeyEvent) {
       let current = wifis.findIndex(wifi => wifi.name === selectedWifi)
-      if (event.keyCode == 1) {
+      if (event.keyCode == CEC_KEY_UP) {
         current -= 1;
-      } else if (event.keyCode == 2) {
+      } else if (event.keyCode == CEC_KEY_DOWN) {
         current += 1;
+      } else if ((event.keyCode == CEC_KEY_GREEN || event.keyCode == CEC_KEY_OK) && selectedWifi != null) {
+        dispatch(selectNetwork(selectedWifi));
+        dispatch(replace('/NetworkPassword'));
+        return;
+      } else {
+        return;
       }
       const index = Math.max(Math.min(current, wifis.length - 1), 0);
       setSelectedWifi(wifis[index].name);
@@ -123,7 +129,7 @@ const NetworkChecker: React.FC = () => {
               ))
             }
           </div>
-          { selectedWifi != null && <a className="button"><span className="function-button red"></span>下一步</a> }
+          { selectedWifi != null && <a className="button"><span className="function-button green"></span>下一步</a> }
         </div>
       }
     </div>

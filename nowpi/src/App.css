@@ -21,16 +21,33 @@
 .button .function-button {
   display: inline-block;
   width: 4vw;
-  height: 1vw;
+  height: 2vw;
   margin-right: 0.5vw;
+}
+.button .function-button.green {
+  background: #0c0;
 }
 .button .function-button.red {
   background: #f00;
 }
 
+.buttons {
+  display: flex;
+}
+.buttons .button {
+  margin-right: 2vw;
+}
+.buttons .button:last-child {
+  margin-right: 0;
+}
+
 h3 {
   margin: 0;
   font-weight: 500;
+}
+
+input {
+  font: inherit
 }
 
 .wifi-list {
@@ -55,4 +72,41 @@ h3 {
 }
 .wifi-list div p:first-child {
   flex: 1;
+}
+
+.wifi-password {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.wifi-password input {
+  margin-bottom: 4vw;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+}
+.keyboard .row {
+  display: flex;
+}
+.keyboard .key {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  background: #333;
+  margin: 0.1rem;
+}
+.keyboard .key.active {
+  font-weight: 500;
+}
+.keyboard .key.active,
+.keyboard .key:hover {
+  background: #007B84;
+}
+.keyboard .key.shift {
+  width: 4.2rem;
 }

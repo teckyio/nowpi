@@ -13,6 +13,7 @@
     "concurrently": "^5.0.0",
     "connected-react-router": "^6.5.2",
     "electron": "^7.1.1",
+    "hdmi-cec": "^0.2.8",
     "history": "^4.10.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
