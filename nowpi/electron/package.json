@@ -1,7 +1,7 @@
 {
   "name": "nowpi-electron",
   "description": "A custom-made TV box software to stream NowTV on Raspberry Pi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "GPL-3.0-or-later",
   "author": "Alex Lau <alex@tecky.io>",
   "main": "main.js",
