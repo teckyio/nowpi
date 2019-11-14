@@ -26,16 +26,27 @@ Alex Lau
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import up0001 from '../migrations/0001-init';
+import { replace } from 'connected-react-router';
+
+const fs = window.require('fs');
+
 const UpdateRunner: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    async function update() {
+      await up0001();
+      dispatch(replace('/LaunchTV'));
+    }
     
+    update();
   }, [dispatch])
+
 
   return (
     <div>
-      <div className="loading">
+      <div className="loading no-mouse">
         <p><i className="fas fa-spinner fa-spin"></i></p>
         <p>正在更新</p>
       </div>

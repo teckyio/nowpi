@@ -23,20 +23,24 @@ Alex Lau
 ===========================================================================
 
 */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { replace } from 'connected-react-router';
+const { ipcRenderer } = window.require('electron');
 
 const UpdateChecker: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(replace('/LaunchTV'))
+    ipcRenderer.on('update-app-done', () => {
+      dispatch(replace('/UpdateRunner'))
+    })
+    ipcRenderer.send('update-app')
   }, [dispatch])
 
   return (
     <div>
-      <div className="loading">
+      <div className="loading no-mouse">
         <p><i className="fas fa-spinner fa-spin"></i></p>
         <p>檢查更新⋯⋯</p>
       </div>

@@ -1,4 +1,4 @@
-'''
+/*
 ===========================================================================
 
     This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,18 @@ Alex Lau
 (c) Tecky Academy Limited 2019
 
 ===========================================================================
-'''
+*/
 
-import subprocess
+const util = window.require ? window.require('util') : { promisify : () => {} };
+const exec = window.require ? util.promisify(window.require('child_process').exec) : () => {};
+const fs = window.require ? window.require('fs') : { existsSync : () => {}, writeFileSync : () => {}};
 
-subprocess.run("sudo apt update")
-subprocess.run("sudo apt install libcec-dev")
-subprocess.run("pip3 install omxplayer-wrapper cec")
-subprocess.run("python3 start-now.py")
+export default async function up() {
+    if (fs.existsSync('.nowpi-0001-applied')) {
+        return;
+    }
+    await exec('sudo apt update');
+    await exec('sudo apt install libcec-dev');
+    await exec('pip3 install omxplayer-wrapper cec');
+    await fs.writeFileSync('.nowpi-0001-applied', '');
+}

@@ -30,9 +30,9 @@ const LaunchTV: React.FC = () => {
   useEffect(() => {
     const proc = spawn('python3', ['/home/pi/start-now.py'])
     
-    proc.stdout.on('data', console.log)
-    proc.stderr.on('data', console.log)
-    proc.on('exit', () => console.log('process closed'));
+    // proc.stdout.on('data', console.log)
+    // proc.stderr.on('data', console.log)
+    // proc.on('exit', () => console.log('process closed'));
 
     return () => {
       proc.kill();

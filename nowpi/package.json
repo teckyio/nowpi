@@ -1,6 +1,6 @@
 {
   "name": "nowpi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "A custom-made TV box software to stream NowTV on Raspberry Pi",
   "dependencies": {
@@ -35,6 +35,16 @@
       "app": "electron"
     },
     "asar": false,
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "armv7l"
+          ]
+        }
+      ]
+    },
     "publish": [
       {
         "provider": "github",
@@ -63,6 +73,7 @@
   "scripts": {
     "start": "concurrently 'BROWSER=none react-scripts start' 'wait-on http://localhost:3000 && electron electron/main.js --dev'",
     "build": "PUBLIC_URL=. react-scripts build && electron-builder build --linux --armv7l",
+    "publish": "PUBLIC_URL=. react-scripts build && electron-builder --publish always --linux --armv7l",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

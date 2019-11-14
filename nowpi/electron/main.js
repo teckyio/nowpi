@@ -23,12 +23,28 @@ Alex Lau
 ===========================================================================
 
 */
-const { app, session, BrowserWindow } = require('electron')
+const { app, session, BrowserWindow, ipcMain } = require('electron')
+const { autoUpdater } = require("electron-updater");
 const path = require('path')
+const spawn = require('child_process').spawn
+
+ipcMain.on('update-app', async (event) => {
+  const version = autoUpdater.doCheckForUpdates();
+  if (version.downloadPromise) {
+    await version.downloadPromise;
+    await autoUpdater.quitAndInstall(true, true);
+  }
+  
+  event.reply('update-app-done')
+})
 
 function isDev() {
   return process.argv[2] == '--dev';
 }
+
+setInterval(() => {
+  spawn('xset', ['-dpms']);
+}, 60000);
 
 let mainWindow;
 
@@ -64,6 +80,7 @@ function createWindow () {
     mainWindow.webContents.openDevTools()
   } else {
     mainWindow.loadFile('./build/index.html')
+    // mainWindow.webContents.openDevTools()
   }
 
   mainWindow.on('closed', function () {
