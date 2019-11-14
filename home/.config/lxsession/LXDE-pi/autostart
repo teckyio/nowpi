@@ -1,1 +1,4 @@
-@lxterminal -e python3 /home/pi/init.py
+@xset s noblank 
+@xset s off 
+@xset -dpms
+@/home/pi/nowpi/nowpi-electron

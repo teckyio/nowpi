@@ -62,7 +62,7 @@
   "author": "Alex Lau <alex@tecky.io>",
   "scripts": {
     "start": "concurrently 'BROWSER=none react-scripts start' 'wait-on http://localhost:3000 && electron electron/main.js --dev'",
-    "build": "react-scripts build && electron-builder build ",
+    "build": "PUBLIC_URL=. react-scripts build && electron-builder build --linux --armv7l",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

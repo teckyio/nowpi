@@ -22,22 +22,6 @@ Alex Lau
 ===========================================================================
 '
 
-PREBUILD_ELECTRON=https://github.com/electron/electron/releases/download/v7.1.1/electron-v7.1.1-linux-armv7l.zip
-
-cd nowpi
-yarn install
-PUBLIC_URL=. yarn build
-cd ..
-if [ ! -d build ]; then
-    mkdir -p build
-    cd build
-    wget $PREBUILD_ELECTRON
-    unzip `basename $PREBUILD_ELECTRON`
-    rm `basename $PREBUILD_ELECTRON`
-    rm resources/default_app.asar
-    cd ..
-fi
-cd build
-mkdir -p resources/app/
-cp -rf ../nowpi/electron/* resources/app/
-cp -rf ../nowpi/build resources/app/
+cp -rf ./nowpi/dist/linux-armv7l-unpacked/* $PI_VOLUME/home/pi/nowpi/
+cp -rf ./home/.config $PI_VOLUME/home/pi/.config
+cp -rf ./home/* $PI_VOLUME/home/pi/
