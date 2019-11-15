@@ -32,12 +32,14 @@ import UpdateRunner from './components/UpdateRunner';
 import NetworkPassword from './components/NetworkPassword';
 import NetworkSetup from './components/NetworkSetup';
 import LaunchTV from './components/LaunchTV';
+import StartRunner from './components/StartRunner';
 
 const App: React.FC = () => {
   return (
     <div className="App">
       <Switch>
-        <Route path="/" exact><NetworkChecker /></Route>
+        <Route path="/" exact><StartRunner /></Route>
+        <Route path="/NetworkChecker" exact><NetworkChecker /></Route>
         <Route path="/NetworkPassword" exact><NetworkPassword /></Route>
         <Route path="/NetworkSetup" exact><NetworkSetup /></Route>
         <Route path="/UpdateCheck" exact><UpdateChecker /></Route>

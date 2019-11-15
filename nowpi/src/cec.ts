@@ -73,4 +73,11 @@ export const CEC_KEY_GREEN = "F3";
 export const CEC_KEY_YELLOW = "F4";
 export const CEC_KEY_BLUE = "F1";
 
-export const remote = new Remote();
+let remoteInstance: any = null;
+
+export const remote = () => {
+  if (remoteInstance == null) {
+    remoteInstance = new Remote();
+  }
+  return remoteInstance;
+}

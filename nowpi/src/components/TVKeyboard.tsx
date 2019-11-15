@@ -125,12 +125,12 @@ const TVKeyboard: React.FC<TVKeyboardProps> = props => {
       }
     }
 
-    remote.on('keydown', onRemoteKeydown)
+    remote().on('keydown', onRemoteKeydown)
 
     return () => {
-      remote.off('keydown', onRemoteKeydown);
+      remote().off('keydown', onRemoteKeydown);
     }
-  }, [remote, setPosition, currentLayout, inputKey]);
+  }, [setPosition, currentLayout, inputKey]);
 
   return (
     <div className="keyboard">

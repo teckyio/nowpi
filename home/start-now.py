@@ -48,6 +48,8 @@ def stream_channel(stop_event):
         urls = res.json()
         url = urls["asset"]["hls"]["adaptive"][0]
 
+        subprocess.call(["killall", "-9", "ffmpeg"])
+
         p = subprocess.Popen(["ffmpeg", "-re", "-i", url, "-fflags", "+genpts+igndts", "-c", "copy", "-f", "mpegts", "udp://localhost:1234"])
         while not stop_event.wait(1) and p.poll() is None:
             pass

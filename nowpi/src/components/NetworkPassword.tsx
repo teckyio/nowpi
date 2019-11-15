@@ -49,12 +49,12 @@ const NetworkPassword: React.FC = () => {
       }
     }
 
-    remote.on('keydown', onRemoteKeydown)
+    remote().on('keydown', onRemoteKeydown)
 
     return () => {
-      remote.off('keydown', onRemoteKeydown);
+      remote().off('keydown', onRemoteKeydown);
     }
-  }, [remote, dispatch]);
+  }, [dispatch]);
 
   return (
     <div>

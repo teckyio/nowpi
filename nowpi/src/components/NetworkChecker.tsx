@@ -65,12 +65,12 @@ const NetworkChecker: React.FC = () => {
       }
     }
 
-    remote.on('keydown', onRemoteKeydown)
+    remote().on('keydown', onRemoteKeydown)
 
     return () => {
-      remote.off('keydown', onRemoteKeydown);
+      remote().off('keydown', onRemoteKeydown);
     }
-  }, [remote, selectedWifi, setSelectedWifi, wifis]);
+  }, [selectedWifi, setSelectedWifi, wifis]);
 
   useEffect(() => {
     function onOnline() {

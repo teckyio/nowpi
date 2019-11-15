@@ -1,4 +1,4 @@
 @xset s noblank 
 @xset s off 
 @xset -dpms
-@/home/pi/nowpi/nowpi-electron
+@/home/pi/nowpi.AppImage
